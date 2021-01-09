@@ -1,0 +1,65 @@
+{
+
+  "title": "Corona 15km Radius",
+
+  "baseColor": "#47B6FF",
+
+  "footerTextLeft": "",
+  "footerTextRight": "<a href='https://meggsimum.de' target='_blank'>meggsimum</a>",
+  "showCopyrightYear": true,
+
+  "mapZoom": 6,
+  "mapCenter": [1137034,6570594],
+  "extent": [-744728, 4599222, 2896534, 8880515],
+
+  "mapLayers": [
+    {
+      "type": "XYZ",
+      "name": "Carto Positron",
+      "url": "https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+      "lid": "positron",
+      "displayInLayerList": true,
+      "visible": false,
+      "attributions": "© <a href='https://carto.com/attribution/' target='_blank'>CARTO</a> | <a href='https://openstreetmap.org/copyright' target='_blank'>© OpenStreetMap</a>-contributors"
+    },
+    {
+      "type": "XYZ",
+      "name": "OpenStreetMap deutsch",
+      "url": "https://c.tile.openstreetmap.de/{z}/{x}/{y}.png",
+      "lid": "osm_de",
+      "displayInLayerList": true,
+      "visible": true,
+      "attributions": "Basemap <a href='https://openstreetmap.de' target='_blank'>openstreetmap.de</a> | <a href='https://openstreetmap.org/copyright' target='_blank'>© OpenStreetMap</a>-contributors"
+    }
+  ],
+
+  "modules": {
+    "wgu-geocoder": {
+      "target": "toolbar",
+      "darkLayout": true,
+      "minChars": 2,
+      "queryDelay": 200,
+      "selectZoom": 16,
+      "debug": false,
+      "placeHolder": "Search address",
+      "provider": "osm",
+      "providerOptions": {
+        "lang": "en-US",
+        "countrycodes": "",
+        "limit": 6
+      }
+    },
+    "wgu-zoomtomaxextent": {
+      "target": "toolbar",
+      "darkLayout": true
+    },
+    "wgu-helpwin": {
+      "target": "toolbar",
+      "darkLayout": true
+    },
+    "wgu-geolocator": {
+      "target": "toolbar",
+      "darkLayout": true
+    }
+  }
+}
