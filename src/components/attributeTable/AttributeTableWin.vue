@@ -5,6 +5,7 @@
   >
   <wgu-attributetable
   layerId="places"
+  :columnMapping="columnMapping"
   >
   </wgu-attributetable>
 
@@ -19,7 +20,13 @@ export default {
   name: 'wgu-attributetable-win',
   data () {
     return {
-      show: false
+      show: false,
+      columnMapping: {
+        NAME: 'Name',
+        ADM0NAME: 'Country',
+        POP_MAX: 'Population',
+        TIMEZONE: 'Timezone'
+      }
     }
   },
   mixins: [Mapable],
@@ -32,7 +39,7 @@ export default {
 <style scoped>
 .wgu-attributetable {
   position: absolute;
-  top: 164px;
+  top: 90px;
   left: 16px;
   z-index: 2;
 }

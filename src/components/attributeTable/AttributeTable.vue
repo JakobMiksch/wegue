@@ -15,36 +15,53 @@ export default {
   mixins: [Mapable],
   methods: {
     onMapBound () {
-      console.log('map bound');
-      const layer = LayerUtil.getLayerByLid(this.layerId, this.map);
-      const source = layer.getSource();
+      this.layer = LayerUtil.getLayerByLid(this.layerId, this.map);
+      this.source = this.layer.getSource();
 
-      // set records
-      this.records = source.getFeatures().map(
+      this.applyRecordsFromLayer();
+      this.applyColumnMapping();
+    },
+
+    applyRecordsFromLayer () {
+      this.records = this.source.getFeatures().map(
         feature => feature.getProperties()
       );
-      let keys = source.getFeatures()[0].getKeys();
-
-      // TODO: this only works for the case that
-      //       the geometry is named 'geometry'
-      //       --> it might be better to check if the
-      //           type of the property is valid for the table
-      const filtered = keys.filter(
-        key => key !== 'geometry'
-      );
+    },
+    applyColumnMapping () {
       let headers = [];
-      filtered.forEachj(propertyName => {
-        headers.push({
-          text: propertyName,
-          value: propertyName
+      if (this.columnMapping) {
+        for (const [propertyName, DisplayName] of Object.entries(this.columnMapping)) {
+          headers.push({
+            text: DisplayName,
+            value: propertyName
+          });
+        }
+      } else {
+        // TODO: taking the first feature assumes that all features
+        //       have the same structure
+        let keys = this.source.getFeatures()[0].getKeys();
+
+        // TODO: this only works for the case that
+        //       the geometry is named 'geometry'
+        //       --> it might be better to check if the
+        //           type of the property is valid for the table
+        const filtered = keys.filter(
+          key => key !== 'geometry'
+        );
+        let headers = [];
+        filtered.forEach(propertyName => {
+          headers.push({
+            text: propertyName,
+            value: propertyName
+          });
         });
-      });
-      // TODO: set headers from config e.g. a mapping from "title to value"
+      }
       this.headers = headers;
     }
   },
   props: {
-    layerId: {type: String, required: true}
+    layerId: {type: String, required: true},
+    columnMapping: {type: Object, required: false, default: null}
   },
   data () {
     return {
@@ -58,7 +75,9 @@ export default {
           value: 'POP_MAX'
         }
       ],
-      records: []
+      records: [],
+      layer: null,
+      source: null
     }
   }
 }
