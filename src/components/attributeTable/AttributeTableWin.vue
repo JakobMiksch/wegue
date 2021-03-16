@@ -3,7 +3,11 @@
      class="wgu-attributetable"
      v-if="show"
   >
-  <wgu-attributetable />
+  <wgu-attributetable
+  layerId="places"
+  >
+  </wgu-attributetable>
+
   </v-card>
 </template>
 
