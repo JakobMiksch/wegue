@@ -31,7 +31,6 @@ export default {
   created () {
     var me = this;
     // TODO move to a father class
-    console.log('on');
     WguEventBus.$on('app-mounted', () => {
       me.win = Vue.prototype.cmpLookup[me.moduleName + '-win'];
     });
@@ -41,7 +40,6 @@ export default {
   },
   methods: {
     toggleUi () {
-      console.log(this.win);
       // TODO move to a father class
       this.win.show = !this.win.show
     }

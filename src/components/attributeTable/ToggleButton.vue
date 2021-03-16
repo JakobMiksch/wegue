@@ -15,7 +15,7 @@ import AttributeTableWin from './AttributeTable';
 export default {
   name: 'wgu-attributetable-btn',
   components: {
-    'wgu-attributetable-win': AttributeTableWin
+    'wgu-attributetable': AttributeTableWin
   },
   props: {
     icon: {type: String, required: false, default: 'table_chart'}, // table_chart, view_comfy
