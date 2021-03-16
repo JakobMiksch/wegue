@@ -10,7 +10,7 @@
 <script>
 import Vue from 'vue'
 import { WguEventBus } from '../../WguEventBus'
-import AttributeTableWin from './AttributeTable';
+import AttributeTableWin from './AttributeTableWin';
 
 export default {
   name: 'wgu-attributetable-btn',
@@ -18,7 +18,8 @@ export default {
     'wgu-attributetable': AttributeTableWin
   },
   props: {
-    icon: {type: String, required: false, default: 'table_chart'}, // table_chart, view_comfy
+    // alternative icons: table_chart, view_comfy
+    icon: {type: String, required: false, default: 'table_chart'},
     text: {type: String, required: false, default: ''},
     dark: {type: Boolean, required: false, default: false}
   },
